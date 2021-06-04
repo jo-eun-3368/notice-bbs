@@ -42,6 +42,9 @@ export default {
     },
     methods:{
         createComment(){
+            if(this.context===''){
+                alert('값을 입력해주세요')
+            }else{
             let today = new Date();
             data.Comment.push({
                 comment_id:data.Comment[data.Comment.length-1].comment_id+1,
@@ -57,6 +60,8 @@ export default {
             this.reloadComment();
             this.context = "";
             this.name="";
+            }
+            
         },
         createSubComment(){
             let today = new Date();

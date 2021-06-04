@@ -8,7 +8,7 @@
             <div class="comment-list-item-context">{{this.commentObj.context}}</div>
             <div class="comment-list-item-button">
                 <b-button variant="info" @click="updateData">수정</b-button>
-                <b-button variant="info" @click="$emit('deleteData')">삭제</b-button>
+                <b-button variant="info" @click="$emit('deleteData',this.user)">삭제</b-button>
                 <b-button variant="info" @click="subCommentToggle">덧글달기</b-button>
             </div>
         </div>

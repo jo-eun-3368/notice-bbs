@@ -28,6 +28,7 @@ export default {
     data() {
         return {
             comments: '',
+            commentObj:'',
         }
     },
     mounted(){
@@ -43,8 +44,7 @@ export default {
         },
         deleteData(){
             console.log('emit')
-            console.log(data.Comment.item)
-            console.log(data.Comment.item)
+            console.log(this.user)
         }
     }
 }
