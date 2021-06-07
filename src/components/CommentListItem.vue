@@ -105,15 +105,28 @@ export default {
         },
         //댓글삭제로직()
         deleteData(){
-            console.log('delete')
-            this.$emit()
+           // console.log('delete')
             // this.$emit('지울래')    // 1, 댓글데이터를 가지고 있는 어딘가에서 '지울래' 이벤트를 들을 준비를 해야한다
             // this.justDelete(id) // 2. 지우는 이벤트 핸들러를 부모로부터 내려받은 함수를 호출
+            
 
-            this.reloadComment();
-            this.reloadSubComments();
-            //왜 map은 안되는지
-           
+            const comment_list = this.commentObj.comment_id-1;
+            //console.log(this.commentObj.comment_id-1); //4
+            console.log(data.Comment)
+            console.log(comment_list)
+            // this.commentList=data.Comment.filter(
+            //     item=>item.comment_id===this.commentObj.comment_id
+            // ).map(commentItme=>({
+            //     ...commentItem,
+            //     user_name: data.User.filter(
+            //         item=>itme.user_id===commentItme.user_id
+            //     )[0].name
+            // }))
+            data.Comment.splice(comment_list,1)
+            const comment_data = data.Comment.map(item=>({...item}))
+             this.reloadSubComments();
+             console.log(comment_data,'comment_data')
+           this.$emit('delete',comment_data)
         }
     },
 }

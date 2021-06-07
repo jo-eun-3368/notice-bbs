@@ -4,7 +4,7 @@
         <!-- 바인딩 속성은 무조건 div로 감싸서 사용해주어야함...... -->
         <div :key="item.comment_id" v-for="item in comments">
             <!-- 속성 넘겨주기 -->
-            <CommentListItem :commentObj="item" :reloadComment="reloadComment" />
+            <CommentListItem :commentObj="item" @delete="itemDeleteData" />
         </div>
         <CommentCreate :contentId="contentId"  :reloadComment="reloadComment" />
     </div>
@@ -42,9 +42,12 @@ export default {
         reloadComment(){
             this.comments = data.Comment.filter(item => item.content_id === this.contentId);
         },
-        // deleteData(){
-            
-        // }
+        itemDeleteData(){
+            //console.log(1)
+            this.reloadComment()
+            // console.log(data.Comment.filter(item=>item.comment_id === this.contentId.comment_id))
+            // console.log(this.content_id)
+        }
     }
 }
 </script> 
