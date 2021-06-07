@@ -27,7 +27,7 @@ export default {
             createdAt: '2019-04-17 11:32:42',
             updateAt:null,
             updateObject:null,
-            //기존에 있던 것을 수정해주는로직 params 의 id값이 
+            //기존에 있던 것을 수정해주는로직 params 의 id값이 - 직관적이지 않음
             updateMode:this.$route.params.contentId>0?true:false
         }
     }, 
@@ -36,9 +36,9 @@ export default {
         //contentId를 가져왔을경우 진행
         if(this.$route.params.contentId>0){
             const contentId = Number(this.$route.params.contentId)
+            //console.log(contentId)
             this.updateObject=data.Content.filter(item=>item.content_id===contentId)[0]
-            //item객체중에 id값이 같은걸 가져오고
-            this.subject= this.updateObject.title;
+            this.subjecs.ut= thipdateObject.title;
             this.context=this.updateObject.context;
         }
     },
@@ -47,7 +47,7 @@ export default {
              let items = data.Content.sort((a,b)=>{return b.content_id - a.content_id}) //역순으로 정렬할때
              //content_id 1씩 증가시키기
              const content_id = items[0].content_id + 1
-            //data에 content배열로 새로생성되도록 넣어주어야한다.
+             
             data.Content.push({
                 content_id:content_id,
                 user_id:this.userId,
