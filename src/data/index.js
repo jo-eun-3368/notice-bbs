@@ -213,6 +213,7 @@ export default{
             content_id:3,
             context:'안뇽ㅎ하세요',
             created_at:'2019-03-29 16:22:11',
+            created_at:'2019-03-29 16:22:11',
             updated_at:null
         },
         {

@@ -7,8 +7,7 @@
             </div>
             <div class="comment-list-item-context">{{this.commentObj.context}}</div>
             <div class="comment-list-item-button">
-                <b-button variant="info" @click="updateData">수정</b-button>
-                <b-button variant="info" @click="$emit('deleteData',this.user)">삭제</b-button>
+                <b-button variant="info" @click="deleteData">삭제</b-button>
                 <b-button variant="info" @click="subCommentToggle">덧글달기</b-button>
             </div>
         </div>
@@ -24,8 +23,7 @@
             </div>
             <div class="comment-list-item-context">{{item.context}}</div>
             <div class="comment-list-item-button">
-                <b-button variant="coral">수정</b-button>
-                <b-button variant="coral">삭제</b-button>
+                <b-button variant="coral" @click="reloadSubComments()">삭제</b-button>
             </div>
             </div>
         </template>
@@ -45,21 +43,34 @@ export default {
     },
     props:{
         commentObj:Object,
+        reloadComment: Function,
         //타입선언
     },
      data() {
         return {
             user : {},
             name : '',
+            user_name:'',
             subCommentList : '',
+            commentList:'',
             subCommentCreateToggle:false,
+            comment_id:'',
+            user_id:'',
+            content_id:'',
+            context:'',
+            created_at:'',
+            updated_at:null
         };
     },
     mounted() {
         this.user = data.User.filter(item=>item.user_id === this.commentObj.user_id)[0];
 
         this.subCommentList = data.subComment.filter(item=> { return item.comment_id === this.commentObj.comment_id });
+
+        this.commentList = data.Comment.filter(item=> { return item.comment_id === this.commentObj.comment_id });
         
+        //console.log(this.commentList)
+        //this.CommentList = 
         // subCommentfilter.map((filter) => {
             
         //     if(filter.user_id === this.user.id) {
@@ -90,18 +101,19 @@ export default {
                     item=>item.user_id===subCommentItem.user_id
                 )[0].name
             }));
-            console.log("methods.subCommentList",this.subCommentList)
-        },
-        //댓글수정로직
-        updateData(){
-            console.log(1)
-
+            //console.log("methods.subCommentList",this.subCommentList)
         },
         //댓글삭제로직()
         deleteData(){
-            console.log(this.commentObj)
+            console.log('delete')
+            this.$emit()
+            // this.$emit('지울래')    // 1, 댓글데이터를 가지고 있는 어딘가에서 '지울래' 이벤트를 들을 준비를 해야한다
+            // this.justDelete(id) // 2. 지우는 이벤트 핸들러를 부모로부터 내려받은 함수를 호출
 
-            //this.$emit('remove:',)
+            this.reloadComment();
+            this.reloadSubComments();
+            //왜 map은 안되는지
+           
         }
     },
 }

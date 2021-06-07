@@ -43,6 +43,8 @@ export default {
   components:{
     CommentList
   },
+
+  
   data() {
     const contentId = Number(this.$route.params.contentId); //글쓴값
     const contentData = data.Content.filter(item => item.content_id === contentId)[0] //Id값으로 가져온 고유데이터
@@ -55,12 +57,16 @@ export default {
       created: contentData.create_at,
     };
   },
+
+
   mounted(){
     const contentId = Number(this.$route.params.contentId); //글쓴값
     const contentData = data.Content.filter(item => item.content_id === contentId)[0] //Id값으로 가져온 고유데이터
     this.user = data.User.filter(item => item.user_id === contentData.user_id)[0].name
 //console.log('ds',this.user)
   },
+
+
   methods: {
     updateData() {
 //console.log(1)
